@@ -2,11 +2,15 @@
 
 Merge layered JSON configuration in precedence order and show exactly which file—or command-line override—won every final leaf.
 
+## Run from GitHub
+
 ```sh
-config-origin-map defaults.json team.json production.json
-config-origin-map defaults.json production.json --set http.port=8443
-config-origin-map defaults.json secrets.json --sources-only
+npx --yes github:b69ca/config-origin-map defaults.json team.json production.json
+npx --yes github:b69ca/config-origin-map defaults.json production.json --set http.port=8443
+npx --yes github:b69ca/config-origin-map defaults.json secrets.json --sources-only
 ```
+
+The package is not currently published to npm. Install it from GitHub with `npm install --global github:b69ca/config-origin-map` if you prefer the shorter `config-origin-map` command.
 
 Objects merge recursively; arrays and scalar values replace earlier values; `null` is an explicit value. Output uses JSON Pointer paths and includes shadowed source names. `--json` returns both the merged document and a provenance map. `--sources-only` omits values when configuration may contain secrets.
 
